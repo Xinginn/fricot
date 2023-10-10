@@ -1,4 +1,5 @@
 <template>
+  <ModalsContainer />
   <nav>
     This is a navbar
   </nav>
@@ -9,10 +10,13 @@
 <script>
 import SidePanel from "./components/SidePanel.vue";
 import MainView from "./components/MainView.vue";
+import { ModalsContainer } from 'vue-final-modal'
+
 export default {
   components: {
     SidePanel,
     MainView,
+    ModalsContainer,
   },
 };
 </script>

@@ -1,41 +1,46 @@
 <template>
-  <MenuTitle :title="'COMPOSE TA BOX'"/>
+  <MenuTitle :title="'COMPOSE TA BOX'" />
 
+  <button type="button" @click="selectBoxSize('M')">Little Box (3 produits)</button>
+  <button type="button" @click="selectBoxSize('L')">medium Box (5 produits)</button>
+  <button type="button" @click="selectBoxSize('XL')">Big Box (7 produits)</button>
+
+  <ComposerModal
+    v-model="isComposing"
+    :title="'Hello World!'"
+    :boxSize="selectedBoxSize"
+    @confirm="confirm()"
+  >
+    <p>VModel: The content of the modal</p>
+  </ComposerModal>
 </template>
 
 <script>
 import MenuTitle from "@/components/MenuTitle.vue";
+import BoxComposer from "@/components/BoxComposer.vue";
+import ComposerModal from '@/components/ComposerModal.vue';
 
 export default {
-  
   name: "BoxComposeSelection",
   components: {
     MenuTitle,
-  },
-  mounted() {
+    BoxComposer,
+    ComposerModal,
   },
   data() {
     return {
-      ingredients: [],
-      boxSize: "M", // "L" "XL"
-      selectedIngredients: [],
+      isComposing: false,
+      selectedBoxSize: null
     };
   },
-  computed: {
-    boxPrice() {
-      return 99.99;
+  methods: {
+    selectBoxSize(size) {
+      this.selectedBoxSize = size;
+      this.isComposing = true;
     },
-    boxSlots() {
-      if (this.boxSize == "M") {
-        return 5
-      }
-      if (this.boxSize == "L") {
-        return 5
-      }
-      if (this.boxSize == "XL") {
-        return 5
-      }
-    }
+    confirm() {
+      this.isComposing = false;
+    },
   },
 };
 </script>
