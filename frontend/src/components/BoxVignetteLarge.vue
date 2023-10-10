@@ -5,13 +5,13 @@
     </div>
     <div class="box-vignette-body">
       <div class="box-vignette-body-title">
-        {{ boxData.name }}
+        {{ getData.name }}
       </div>
       <div class="box-vignette-body-content">
-        {{ getContent }}
+        {{ getData.content }}
       </div>
       <div class="box-vignette-body-price">
-        {{ boxData.price }} €
+        {{ getData.price }} €
       </div>
     </div>
   </div>
@@ -21,16 +21,22 @@
 export default {
   name: "BoxVignette",
   props: {
-    boxData: Object,
+    size: String,
   },
   computed: {
-    getContent() {
-      return this.boxData.content.reduce((stack, current) => {
-        return stack === "" ? `${current}` : `${stack}, ${current}`;
-      }, "");
+    getData() {
+      if (this.size === "M") {
+        return {name: "Little Box", content: "(3 produits au choix)", price: "11,95 €"}
+      }
+      if (this.size === "L") {
+        return {name: "Medium Box", content: "(5 produits au choix)", price: "15,95 €"}
+      }
+      if (this.size === "XL") {
+        return {name: "Big Box", content: "(7 produits au choix)", price: "19,95 €"}
+      }
     },
     getSrc() {
-      return require(`../assets/wine_box${this.boxData.id}.png`)
+      return require(`../assets/wine_box1.png`)
     }
   },
 };

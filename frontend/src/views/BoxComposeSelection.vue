@@ -4,6 +4,10 @@
   <button type="button" @click="selectBoxSize('M')">Little Box (3 produits)</button>
   <button type="button" @click="selectBoxSize('L')">medium Box (5 produits)</button>
   <button type="button" @click="selectBoxSize('XL')">Big Box (7 produits)</button>
+  <BoxVignetteLarge :size="'M'"/>
+  <BoxVignetteLarge :size="'L'"/>
+  <BoxVignetteLarge :size="'XL'"/>
+
 
   <ComposerModal
     v-model="isComposing"
@@ -19,6 +23,7 @@
 import MenuTitle from "@/components/MenuTitle.vue";
 import BoxComposer from "@/components/BoxComposer.vue";
 import ComposerModal from '@/components/ComposerModal.vue';
+import BoxVignetteLarge from '@/components/BoxVignetteLarge.vue';
 
 export default {
   name: "BoxComposeSelection",
@@ -26,6 +31,7 @@ export default {
     MenuTitle,
     BoxComposer,
     ComposerModal,
+    BoxVignetteLarge,
   },
   data() {
     return {
