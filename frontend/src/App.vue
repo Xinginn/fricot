@@ -1,12 +1,29 @@
 <template>
   <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    This is a navbar
   </nav>
-  <router-view/>
+  <SidePanel />
+  <MainView />
 </template>
 
+<script>
+import SidePanel from "./components/SidePanel.vue";
+import MainView from "./components/MainView.vue";
+export default {
+  components: {
+    SidePanel,
+    MainView,
+  },
+};
+</script>
+
+
 <style>
+.skeleton {
+  border: 1px solid red !important;
+  box-sizing: border-box;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -16,15 +33,8 @@
 }
 
 nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+  height: 80px;
+  background-color: grey;
+  margin-bottom: 62px;
 }
 </style>
