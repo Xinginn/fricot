@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider     = "postgresql"
+  url          = env("DATABASE_URL")
+  relationMode = "foreignKeys"
+}
+
+model Product {
+  id           Int           @id @unique @default(autoincrement())
+  label        String
+  category     Category
+  description  String?
+  stock        Int           @default(0)
+  enabled      Boolean       @default(true)
+  added_price  Float         @default(0.0)
+  image        String
+  boxes        Box[]
+  commandLines CommandLine[]
+}
+
+model Box {
+  id           Int           @id @unique @default(autoincrement())
+  label        String
+  description  String
+  enabled      Boolean       @default(true)
+  price        Float         @default(19.95)
+  products     Product[]
+  commandLines CommandLine[]
+}
+
+model User {
+  id       Int    @id @unique @default(autoincrement())
+  username String @unique
+  password String
+}
+
+model CommandLine {
+  id       Int       @id @unique @default(autoincrement())
+  box_id   Int
+  box      Box?      @relation(fields: [boxId], references: [id])
+  quantity Int       @default(1)
+  products Product[]
+  boxId    Int?
+}
+
+model Command {
+  id      Int @id @unique @default(autoincrement())
+  user_id Int
+}
+
+enum Category {
+  CHEESE
+  WINE
+  SWEETS
+}
