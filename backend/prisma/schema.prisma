@@ -19,7 +19,7 @@ model Product {
   stock        Int           @default(0)
   enabled      Boolean       @default(true)
   added_price  Float         @default(0.0)
-  image        String
+  image        String?
   boxes        Box[]
   commandLines CommandLine[]
 }

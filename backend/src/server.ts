@@ -2,6 +2,7 @@ import express, { Application, NextFunction } from 'express';
 
 import cors from 'cors';
 import { getRoot } from './routes/getRoot';
+import { productsRoute } from './routes/products.route';
 
 
 async function main() {
@@ -17,7 +18,7 @@ async function main() {
 
   // routes
   getRoot(app);
-
+  productsRoute(app);
 
 
   const port = process.env.PORT || 3000;
