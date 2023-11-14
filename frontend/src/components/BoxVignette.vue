@@ -1,17 +1,17 @@
 <template>
-  <div class="box-vignette">
-    <div class="box-vignette-image">
-      <img :src="getSrc" alt=""  />
+  <div class="box-vignette zoomable">
+    <div >
+      <img class="box-vignette-image" :src="getSrc" alt=""  />
     </div>
     <div class="box-vignette-body">
       <div class="box-vignette-body-title">
-        {{ boxData.name }}
+        {{ boxData.label }}
       </div>
       <div class="box-vignette-body-content">
         {{ getContent }}
       </div>
       <div class="box-vignette-body-price">
-        {{ boxData.price }} €
+        {{ boxData.price.toFixed(2) }} €
       </div>
     </div>
   </div>
@@ -25,12 +25,13 @@ export default {
   },
   computed: {
     getContent() {
-      return this.boxData.content.reduce((stack, current) => {
-        return stack === "" ? `${current}` : `${stack}, ${current}`;
+      return this.boxData.boxContent.reduce((stack, current) => {
+        const text = (current.quantity > 1) ? `${current.quantity} ${current.product.label}` : `${current.product.label}`;
+        return (stack === "") ?` ${text}` : `${stack}, ${text}`;
       }, "");
     },
     getSrc() {
-      return require(`../assets/wine_box${this.boxData.id}.png`)
+      return require(`../assets/${this.boxData.image}.png`)
     }
   },
 };
@@ -46,15 +47,11 @@ export default {
   flex-direction: column;
 }
 
+
 .box-vignette-image {
   width: 300px;
   height: 215px;
-  border-radius: 20px 20px 0px 0px;
-}
-
-.box-vignette-image img {
-  width: 300px;
-  height: 215px;
+  object-fit: cover;
   border-radius: 20px 20px 0px 0px;
 }
 

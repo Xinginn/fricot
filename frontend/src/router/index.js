@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import BoxList from '../views/BoxList.vue';
 import BoxComposeSelection from '../views/BoxComposeSelection.vue';
+import RecommandationsView from '../views/RecommandationsView.vue';
 
 const routes = [
   {
@@ -16,7 +17,7 @@ const routes = [
   {
     path: '/recommand',
     name: 'recommand',
-    component: BoxList
+    component: RecommandationsView
   },
 ]
 

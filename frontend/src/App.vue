@@ -1,8 +1,6 @@
 <template>
   <ModalsContainer />
-  <nav>
-    This is a navbar
-  </nav>
+  <NavBar />
   <SidePanel />
   <MainView />
 </template>
@@ -10,6 +8,7 @@
 <script>
 import SidePanel from "./components/SidePanel.vue";
 import MainView from "./components/MainView.vue";
+import NavBar from "./components/NavBar.vue";
 import { ModalsContainer } from 'vue-final-modal'
 
 export default {
@@ -17,6 +16,7 @@ export default {
     SidePanel,
     MainView,
     ModalsContainer,
+    NavBar,
   },
 };
 </script>
@@ -36,9 +36,12 @@ export default {
   color: #2c3e50;
 }
 
-nav {
-  height: 80px;
-  background-color: grey;
-  margin-bottom: 62px;
+.zoomable {
+  transform: scale(1.0);
+  transition: transform 0.3s;
+  cursor: pointer;
+}
+.zoomable:hover {
+  transform: scale(1.2);
 }
 </style>

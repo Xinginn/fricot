@@ -1,11 +1,11 @@
 <template>
   <aside id="side-panel" class="">
     <hr />
-    <router-link class="side-link" to="/">Nos box signature</router-link>
+    <router-link class="side-link" to="/">Nos box signatures</router-link>
     <hr />
     <router-link class="side-link" to="/compose">Compose ta box</router-link>
     <hr />
-    <router-link class="side-link" to="/recommand">Recommandations</router-link>
+    <router-link class="side-link" to="/recommand">Nos sélections</router-link>
     <hr />
   </aside>
 </template>

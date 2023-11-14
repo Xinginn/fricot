@@ -23,7 +23,6 @@ export default {
   data() {
     return {
       ingredients: [],
-      boxSize: "M", // "L" "XL"
       selectedIngredients: [],
     };
   },

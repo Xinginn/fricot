@@ -1,21 +1,19 @@
 <template>
   <MenuTitle :title="'COMPOSE TA BOX'" />
-
-  <button type="button" @click="selectBoxSize('M')">Little Box (3 produits)</button>
-  <button type="button" @click="selectBoxSize('L')">medium Box (5 produits)</button>
-  <button type="button" @click="selectBoxSize('XL')">Big Box (7 produits)</button>
-  <BoxVignetteLarge :size="'M'"/>
-  <BoxVignetteLarge :size="'L'"/>
-  <BoxVignetteLarge :size="'XL'"/>
+  
+  <div class="d-flex justify-content-around">
+    <BoxVignetteLarge :size="'M'" @click="selectBoxSize('M')" />
+    <BoxVignetteLarge :size="'L'" @click="selectBoxSize('L')" />
+    <BoxVignetteLarge :size="'XL'" @click="selectBoxSize('XL')" />
+  </div>
 
 
   <ComposerModal
     v-model="isComposing"
-    :title="'Hello World!'"
-    :boxSize="selectedBoxSize"
+    :title="''"
     @confirm="confirm()"
   >
-    <p>VModel: The content of the modal</p>
+    <BoxComposer :boxSize="selectedBoxSize" />
   </ComposerModal>
 </template>
 

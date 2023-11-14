@@ -1,7 +1,7 @@
 <template>
-  <div class="box-vignette">
-    <div class="box-vignette-image">
-      <img :src="getSrc" alt=""  />
+  <div class="box-vignette zoomable">
+    <div>
+      <img class="box-vignette-image" :src="getSrc" alt=""  />
     </div>
     <div class="box-vignette-body">
       <div class="box-vignette-body-title">
@@ -26,13 +26,13 @@ export default {
   computed: {
     getData() {
       if (this.size === "M") {
-        return {name: "Little Box", content: "(3 produits au choix)", price: "11,95 €"}
+        return {name: "Little Box", content: "(3 produits au choix)", price: "11,95"}
       }
       if (this.size === "L") {
-        return {name: "Medium Box", content: "(5 produits au choix)", price: "15,95 €"}
+        return {name: "Medium Box", content: "(5 produits au choix)", price: "15,95"}
       }
       if (this.size === "XL") {
-        return {name: "Big Box", content: "(7 produits au choix)", price: "19,95 €"}
+        return {name: "Big Box", content: "(7 produits au choix)", price: "19,95"}
       }
     },
     getSrc() {
@@ -44,8 +44,8 @@ export default {
 
 <style scoped>
 .box-vignette {
-  width: 300px;
-  height: 340px;
+  width: 390px;
+  height: 420px;
   border-radius: 20px;
   background: #f0f0f0;
   display: flex;
@@ -53,14 +53,9 @@ export default {
 }
 
 .box-vignette-image {
-  width: 300px;
-  height: 215px;
-  border-radius: 20px 20px 0px 0px;
-}
-
-.box-vignette-image img {
-  width: 300px;
-  height: 215px;
+  width: 390px;
+  height: 300px;
+  object-fit: cover;
   border-radius: 20px 20px 0px 0px;
 }
 
