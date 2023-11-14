@@ -3,6 +3,7 @@ import express, { Application, NextFunction } from 'express';
 import cors from 'cors';
 import { getRoot } from './routes/getRoot';
 import { productsRoute } from './routes/products.route';
+import { boxesRoute } from './routes/boxes.route';
 
 
 async function main() {
@@ -19,6 +20,7 @@ async function main() {
   // routes
   getRoot(app);
   productsRoute(app);
+  boxesRoute(app);
 
 
   const port = process.env.PORT || 3000;

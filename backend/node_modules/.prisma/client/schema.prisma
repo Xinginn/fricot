@@ -12,41 +12,55 @@ datasource db {
 }
 
 model Product {
-  id           Int           @id @unique @default(autoincrement())
-  label        String
-  category     Category
-  description  String?
-  stock        Int           @default(0)
-  enabled      Boolean       @default(true)
-  added_price  Float         @default(0.0)
-  image        String?
-  boxes        Box[]
-  commandLines CommandLine[]
+  id              Int               @id @unique @default(autoincrement())
+  label           String
+  category        Category
+  description     String?
+  stock           Int               @default(0)
+  enabled         Boolean           @default(true)
+  added_price     Float             @default(0.0)
+  image           String?
+  commandLines    CommandLine[]
+  productQuantity ProductQuantity[]
 }
 
 model Box {
-  id           Int           @id @unique @default(autoincrement())
+  id           Int               @id @unique @default(autoincrement())
   label        String
   description  String
-  enabled      Boolean       @default(true)
-  price        Float         @default(19.95)
-  products     Product[]
+  enabled      Boolean           @default(true)
+  price        Float             @default(19.95)
+  image        String?
+  boxContent   ProductQuantity[]
   commandLines CommandLine[]
+}
+
+model ProductQuantity {
+  id         Int     @id @unique @default(autoincrement())
+  quantity   Int     @default(1)
+  product    Product @relation(fields: [product_id], references: [id])
+  product_id Int
+  box        Box     @relation(fields: [box_id], references: [id])
+  box_id     Int
 }
 
 model User {
   id       Int    @id @unique @default(autoincrement())
   username String @unique
   password String
+  isPro    Boolean @default(false)
 }
 
 model CommandLine {
-  id       Int       @id @unique @default(autoincrement())
-  box_id   Int
-  box      Box?      @relation(fields: [boxId], references: [id])
-  quantity Int       @default(1)
-  products Product[]
-  boxId    Int?
+  id        Int      @id @unique @default(autoincrement())
+  label     String
+  box_id    Int
+  box       Box?     @relation(fields: [boxId], references: [id])
+  quantity  Int      @default(1)
+  products  String
+  boxId     Int?
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId Int?
 }
 
 model Command {
@@ -58,4 +72,5 @@ enum Category {
   CHEESE
   WINE
   SWEETS
+  OTHERS
 }
